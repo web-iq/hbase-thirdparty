@@ -270,6 +270,19 @@
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <!-- Fail for common vulnerability scores rated medium, high or critical -->
+          <!-- See also https://www.first.org/cvss/specification-document -->
+          <failBuildOnCVSS>4</failBuildOnCVSS>
+<!--          <suppressionFile>${project.basedir}/build/security-check-suppression.xml</suppressionFile>-->
+          <dataDirectory>/tmp/maven-dependency-check-data</dataDirectory>
+          <yarnAuditAnalyzerEnabled>false</yarnAuditAnalyzerEnabled>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-clean-plugin</artifactId>
         <configuration>
           <filesets>
